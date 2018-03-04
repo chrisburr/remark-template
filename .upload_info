@@ -1,0 +1,4 @@
+HOST=chrisburr.me
+WEB_BASE=/usr/share/nginx/html
+URL_SECRET=tMHotdJXZ9nOrlyJZFICT-0a1OtB-cTLWG3v4Oyj6zw
+DIR_NAME=remark-template

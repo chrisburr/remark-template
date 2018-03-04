@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Title - Chris Burr - Date</title>
+    <meta charset="utf-8">
+    <style>
+      @import url('https://fonts.googleapis.com/css?family=Fira+Sans:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&subset=greek,greek-ext,latin-ext');
+      @import url(https://fonts.googleapis.com/css?family=Roboto);
+      @import url(https://fonts.googleapis.com/css?family=Fira+Mono);
+
+      body {
+        font-family: 'Fira Sans';
+        font-weight: 300;
+        color: #522795;
+      }
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Fira Sans';
+        font-weight: 300;
+        color: #522795;
+        margin: 0;
+      }
+      .remark-slide-content {
+        font-size: 30px;
+        padding: 1em 2em 1em 2em;
+        background-image: linear-gradient(top, red, red 70%, transparent 70%, transparent 100%);
+      }
+      .remark-slide-content h1 {
+        position: absolute;
+        top: 0.5em;
+        font-size: 50px;
+      }
+      .remark-code, .remark-inline-code {
+        font-family: 'Fira Mono';
+        font-size: 20px;
+      }
+      hr {
+        border-color: #FFD700;
+        margin-top: 1em;
+        margin-bottom: 1em;
+      }
+      .footnote {
+        position: absolute;
+        bottom: 10px;
+        font-size: 20px;
+        left: 0;
+        right: 0;
+        width: 100%;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <script src="https://remarkjs.com/downloads/remark-0.14.1.min.js" integrity="sha384-8yJrXbsDy7skSrR35KAsAPf4hoIhulwkNyoRcrVcbOtqonukCAZ+bIIr8Y6UCebx" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0-beta1/katex.min.css" integrity="sha384-VEnyslhHLHiYPca9KFkBB3CMeslnM9CzwjxsEbZTeA21JBm7tdLwKoZmCt3cZTYD" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0-beta1/katex.min.js" integrity="sha384-O4hpKqcplNCe+jLuBVEXC10Rn1QEqAmX98lKAIFBEDxZI0a+6Z2w2n8AEtQbR4CD" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0-beta1/contrib/auto-render.min.js" integrity="sha384-IiI65aU9ZYub2MY9zhtKd1H2ps7xxf+eb2YFG9lX6uRqpXCvBTOidPRCXCrQ++Uc" crossorigin="anonymous"></script>
+    <script>
+      // ********************************************************************************
+      // Config
+      // ********************************************************************************
+      var options = {
+        sourceUrl: 'markdown.md',
+
+        // Aspect ratio
+        ratio: '16:9',  // '16:9', '4:3' or anything
+
+        // Navigation options
+        navigation: {
+          scroll: true,
+          touch: true,
+          click: false
+        },
+
+        // Customize slide number label, either using a format string..
+        slideNumberFormat: function (current, total) {
+          if (current == 1) {
+            return '';
+          } else {
+            return (current-1) + '/' + (total-1);
+          }
+        },
+
+        // Enable or disable counting of incremental slides in the slide counting
+        countIncrementalSlides: true,
+      };
+
+      // ********************************************************************************
+      // Macros
+      // ********************************************************************************
+      remark.macros.scale_x = function (scale) {
+        var url = this;
+        return '<img src="' + url + '" style="width: ' + scale + 'vw;" />';
+      };
+      remark.macros.scale_y = function (scale) {
+        var url = this;
+        return '<img src="' + url + '" style="height: ' + scale + 'vh;" />';
+      };
+
+      remark.macros.vspace = function (space) {
+        return '<div style="width: 100vw; height: ' + space + 'vh;"></div>';
+      };
+
+      remark.macros.split = function (n_splits) {
+        if (!n_splits) n_splits = 2;
+        return (
+          '<div style="float:left; width:' + 1/n_splits*100 + '%;">' +
+          remark.convert(this) +
+          '</div>'
+        );
+      };
+
+      remark.macros.rule = function () {
+        return '<hr>';
+      };
+
+      remark.macros.split_start = function (n_splits) {
+        if (!n_splits) n_splits = 2;
+        return '<div>\n<div style="float:left; width:' + (100/n_splits-1) + '%;">';
+      };
+      remark.macros.split_middle = function (n_splits) {
+        if (!n_splits) n_splits = 2;
+        return '</div>\n<div style="float:left; width:' + (100/n_splits-1) + '%;">';
+      };
+      remark.macros.split_end = function (n_splits) {
+        return '</div>\n</div>';
+      };
+
+      remark.macros.plain = function (content) {
+        return '<div style="position: absolute; width:100%; text-align:center; left:0; right:0; color: #FFFFFF; font-weight: 400; font-size: 40px;">'+content+'</div>';
+      };
+
+      remark.macros.questions = function () {
+        return '<div style="position: absolute; width:100%; text-align:center; left:0; right:0; font-weight: 400; font-size: 40px;">Any questions?</div>';
+      };
+
+      // ********************************************************************************
+      // Create the Presentation
+      // ********************************************************************************
+      var renderMath = function() {
+        renderMathInElement(document.body, {delimiters: [ // mind the order of delimiters(!?)
+            {left: "$$", right: "$$", display: true},
+            {left: "$", right: "$", display: false},
+            {left: "\\[", right: "\\]", display: true},
+            {left: "\\(", right: "\\)", display: false},
+        ]});
+      }
+
+      var slideshow = remark.create(options, renderMath);
+    </script>
+  </body>
+</html>
