@@ -16,3 +16,6 @@ upload: upload.sh $(SOURCE) $(ASSETS) $(TEMPLATE)
 serve:
 	open http://0.0.0.0:8000/
 	python3 -m http.server
+
+list:
+	bash -c 'for fn in $$(ssh chrisburr.me echo "'"/usr/share/nginx/html/presentations/*/*/"'"); do printf "%-50s | https://chrisburr.me/presentations/%s/%s/\n" $$(basename $$fn) $$(basename $$(dirname $$fn)) $$(basename $$fn); done | sort'

@@ -12,9 +12,9 @@ title: TITLE_GOES_HERE
 ![:vspace 15]
 
 ![:split_start 2]
-.center[![:scale_y 20](logos/UniOfManchesterLogo.svg)]
+.center[![:scale_y 5](logos/UniOfManchesterLogo.svg)]
 ![:split_middle 2]
-.center[![:scale_y 20](logos/lhcb-logo.jpg)]
+.center[![:scale_y 5](logos/lhcb-logo.jpg)]
 ![:split_end 2]
 
 ---
